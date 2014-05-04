@@ -1,0 +1,6 @@
+---
+app_name: lvlapp
+app_user: deployer
+mysql_user: deployer
+mysql_root_password: "strongpassword"
+mysql_user_password: "foobar"

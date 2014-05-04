@@ -1,0 +1,18 @@
+#!/bin/bash
+
+die () {
+    echo >&2 "$@"
+    exit 1
+}
+
+[ -n "$1" ] || die "datacenter argument required (vagrant, digitalocean)"
+
+#get current dir
+pwd="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+FACTER_datacenter="$1" puppet apply \
+  --templatedir="$pwd/templates" \
+  --modulepath="$pwd/modules:/etc/puppet/modules" \
+  --hiera_config="$pwd/hiera.yaml" \
+  --manifestdir="$pwd/manifests" \
+  --verbose $pwd/manifests/default.pp
