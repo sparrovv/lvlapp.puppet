@@ -10,7 +10,7 @@ FORGE
     puppetlabs/concat (1.1.0-rc1)
       puppetlabs/stdlib (>= 3.0.0)
     puppetlabs/firewall (1.0.2)
-    puppetlabs/ntp (0.0.3)
+    puppetlabs/ntp (3.0.3)
       puppetlabs/stdlib (>= 0.1.6)
     puppetlabs/stdlib (4.1.0)
 
@@ -36,5 +36,5 @@ DEPENDENCIES
   puppetlabs/apt (>= 0)
   puppetlabs/firewall (>= 0)
   puppetlabs/mysql (>= 0)
-  puppetlabs/ntp (= 0.0.3)
+  puppetlabs/ntp (= 3.0.3)
 
