@@ -1,0 +1,24 @@
+{
+  "name": "benben-rubybuild",
+  "version": "0.1.1",
+  "source": "https://github.com/benben/puppet-rubybuild",
+  "author": "benben",
+  "license": "MIT",
+  "summary": "ruby-build standalone",
+  "description": "ruby-build in standalone mode",
+  "project_page": "https://github.com/benben/puppet-rubybuild",
+  "dependencies": [
+    {
+      "name": "puppetlabs/git"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "CHANGELOG": "581857ecd29cb29d0155dae1153e3734",
+    "Modulefile": "117dfc09785027d0e8cbb3a2fabf6e2d",
+    "README.md": "446ed3df535e3923482d58a8e7a899da",
+    "manifests/init.pp": "5151cab155ed6cfc6d43e70e66084ce2"
+  }
+}

@@ -1,7 +1,7 @@
 ## if is_vagrant is defined, then we're running under Vagrant.  Use other
 ## logic/facts to detect environmental stuff.
 
-Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
+Exec { path => [ "/opt/ruby/bin/", "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
 
 class settings{
   $app_name = hiera('app_name')
@@ -22,6 +22,8 @@ Firewall {
 
 class appserv{
   include '::ntp'
+  require git
+
   class{'firewall':}
   class { ['appserv::fw_pre', 'appserv::fw_post']: }
 
@@ -55,6 +57,7 @@ export AZURE_PRIMARY_ACCOUNT_KEY=
 export AZURE_CUSTOMER_ID=
 export AZURE_SECRET=
 export RAVEN_DSN=
+export GOOGLE_ANALYTICS=
 #export RAILS_SECRET_KEY_BASE=
 "
   }
@@ -144,16 +147,28 @@ class appserv::db{
 class appserv::packages{
   package{"curl": ensure => installed}
   package{"vim":  ensure => installed}
-  package{"git":  ensure => installed}
   package{"screen":  ensure => installed}
 
-  package{["build-essential", "zlib1g-dev", "libssl-dev", "libreadline6-dev", "libyaml-dev", "libmysqlclient-dev"] :
+  package{["libyaml-dev", "libmysqlclient-dev"] :
     ensure => installed
   }
 
-  package{"ruby1.9.3":  ensure => installed}
-}
+  class { "rubybuild": 
+    ruby_version => '2.1.1'
+  }
 
+  file { "/etc/profile.d/ruby_21.sh":
+    ensure => present,
+    content => '
+export RUBY_21_HOME=/opt/ruby
+export PATH=$RUBY_21_HOME/bin:$PATH
+',
+    owner   => "root",
+    group   => "root",
+    mode    => 644,
+    require => Class["rubybuild"],
+  }
+}
 
 # brings the system up-to-date after importing it with Vagrant
 class appserv::update_aptget{
