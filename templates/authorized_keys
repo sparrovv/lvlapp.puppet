@@ -1,1 +1,3 @@
-ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAxs/AaMXJZvhTg1AtaQkOHKjqouZKl/f4OwABy3AFac+sfzs04eg7D5m4VrwlIaM/kpBN3dqt0vA9+afvv77+iFW8tw9y98aeu62D0FgwI1Ayyl+Fmh5tNIGbX4geuuutfHpCJzJtrY4P9ASGdYw/Qacbo7FWPPD/epfW+5HaGja3XEdAZFLplSosxVBca/5NR8aulOKl2x67/T+8wFWgrAdiPqMsehycrvcJuX5iBQP7GjFN8CrrNhAfs3oOv/FpDO0HmqhfzrycT/xxOB59kRMUUe+EB7wXUREWAFfbT079e5aPb8X1eNeYDsejNfzrYtQfTjnNrXg+KvP11SCa0w== sparrovv@gmail.com
+<% @authorized_keys.each do |key| %> 
+<%= key %>
+<% end %>

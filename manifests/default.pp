@@ -92,6 +92,7 @@ class appserv::user {
     ensure => 'directory',
   }
 
+  $authorized_keys = hiera_array('authorized_keys')
   file { "/home/${settings::app_user}/.ssh/authorized_keys" :
     content => template('authorized_keys'),
     owner => "${settings::app_user}",
