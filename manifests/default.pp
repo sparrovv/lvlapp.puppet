@@ -153,7 +153,7 @@ class appserv::packages{
     ensure => installed
   }
 
-  class { "rubybuild": 
+  class { "rubybuild":
     ruby_version => '2.1.1'
   }
 
@@ -168,6 +168,13 @@ export PATH=$RUBY_21_HOME/bin:$PATH
     mode    => 644,
     require => Class["rubybuild"],
   }
+
+  exec { "Install bundler":
+    command => "/opt/ruby/bin/gem install bundler",
+    unless  => "/opt/ruby/bin/gem list | grep -q bundler",
+    require => Class['rubybuild']
+  }
+
 }
 
 # brings the system up-to-date after importing it with Vagrant
