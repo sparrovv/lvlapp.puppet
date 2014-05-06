@@ -24,4 +24,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       '--verbose',
     ]
   end
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 756
+    v.cpus = 1
+  end
 end
