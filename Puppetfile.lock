@@ -3,6 +3,8 @@ FORGE
   specs:
     attachmentgenie/locales (1.0.3)
       puppetlabs/stdlib (>= 2.2.1)
+    benben/rubybuild (0.1.1)
+      puppetlabs/git (>= 0.0.0)
     jfryman/nginx (0.0.9)
       puppetlabs/apt (>= 1.0.0)
       puppetlabs/concat (>= 1.0.0)
@@ -10,6 +12,7 @@ FORGE
     puppetlabs/concat (1.1.0-rc1)
       puppetlabs/stdlib (>= 3.0.0)
     puppetlabs/firewall (1.0.2)
+    puppetlabs/git (0.0.3)
     puppetlabs/ntp (3.0.3)
       puppetlabs/stdlib (>= 0.1.6)
     puppetlabs/stdlib (4.1.0)
@@ -32,6 +35,7 @@ GIT
 
 DEPENDENCIES
   attachmentgenie/locales (= 1.0.3)
+  benben/rubybuild (>= 0)
   jfryman/nginx (>= 0)
   puppetlabs/apt (>= 0)
   puppetlabs/firewall (>= 0)
