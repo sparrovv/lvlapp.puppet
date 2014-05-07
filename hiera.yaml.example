@@ -3,8 +3,8 @@
   - yaml
 
 :yaml:
-  :datadir: '/vagrant/hierdata'
+  :datadir: '/etc/puppet/hierdata'
 
 :hierarchy:
   - common
-  - %{datacenter}
+  - foodatacenter

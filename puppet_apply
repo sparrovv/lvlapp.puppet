@@ -10,9 +10,16 @@ die () {
 #get current dir
 pwd="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+hiera_path=$pwd
+
+if [ $1 = 'digitalocean' ]
+then
+  hiera_path="/etc/puppet"
+fi
+
 FACTER_datacenter="$1" puppet apply \
   --templatedir="$pwd/templates" \
   --modulepath="$pwd/modules:/etc/puppet/modules" \
-  --hiera_config="$pwd/hiera.yaml" \
+  --hiera_config="$hiera_path/hiera.yaml" \
   --manifestdir="$pwd/manifests" \
   --verbose $pwd/manifests/default.pp
