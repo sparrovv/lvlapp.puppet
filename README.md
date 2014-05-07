@@ -4,11 +4,13 @@ This is still WIP.
 
 This repository contains puppet modules for lvlapp.com.
 
-### Prerequisites 
+### Prerequisites to run it on your server:
 
-You need puppet 3 on your box, because in other way you won't be able to use `hiera`.
+- git or rsync to get repository on server.
+- puppet 3, so we can use [hiera](http://docs.puppetlabs.com/hiera/1/).
+- ruby and librarian-puppet gem to install puppet modules.
 
-This is an instruction how to install it on Ubuntu 12.04.
+How to install puppet 3 on Ubuntu 12.04.
 
 ```sh
   wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
@@ -25,12 +27,15 @@ Prepare hierdata for your environment (check out the hierdata/vagrant.yaml as an
 Run puppet:
 
 ```sh
+  gem install librarian-puppet
+  librarian-puppet install
+
   ./puppet_apply $your_environment
 ```
 
 ### Adding new modules:
 
-This repository uses librarian-puppet to manage vendor modules, so if you want to add something make sure that you have these gems installed:
+This repository uses librarian-puppet to manage vendor modules, so make sure that you have these gems installed:
 
 ```sh
   gem install librarian-puppet
@@ -39,7 +44,7 @@ This repository uses librarian-puppet to manage vendor modules, so if you want t
   librarian-puppet install
 ```
 
-### Testing with Vagrant (make sure you have Vagrant in version at least 1.5)
+### Testing with Vagrant  Vagrant in version at least 1.5)
 
 Default image used for this project is `ubuntu precise64`, that doesn't have puppet 3 installed.
 To get around it, please follow these instructions:
