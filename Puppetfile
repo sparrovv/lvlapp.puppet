@@ -7,3 +7,4 @@ mod 'jfryman/nginx'
 mod 'puppetlabs/firewall'
 mod "puppetlabs/apt", :git => "git://github.com/puppetlabs/puppetlabs-apt.git"
 mod "benben/rubybuild"
+mod "rodjek/logrotate"

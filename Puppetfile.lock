@@ -16,6 +16,7 @@ FORGE
     puppetlabs/ntp (3.0.3)
       puppetlabs/stdlib (>= 0.1.6)
     puppetlabs/stdlib (4.1.0)
+    rodjek/logrotate (1.1.1)
 
 GIT
   remote: git://github.com/puppetlabs/puppetlabs-apt.git
@@ -41,4 +42,5 @@ DEPENDENCIES
   puppetlabs/firewall (>= 0)
   puppetlabs/mysql (>= 0)
   puppetlabs/ntp (= 3.0.3)
+  rodjek/logrotate (>= 0)
 

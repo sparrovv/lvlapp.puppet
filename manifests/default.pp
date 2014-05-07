@@ -24,7 +24,7 @@ class appserv{
   include '::ntp'
   require git
 
-  class{'firewall':}
+  class {'firewall':}
   class { ['appserv::fw_pre', 'appserv::fw_post']: }
 
   class { locales:
@@ -60,7 +60,17 @@ alias v=vim
 [ -f ~/.lvlapp.env ] && source ~/.lvlapp.env
     '
   }
+
+  logrotate::rule { 'railslogs':
+    path          => "/home/${settings::app_user}/${app_name}/shared/log/*.log",
+    rotate        => 15,
+    rotate_every  => 'week',
+    copytruncate  => true,
+    compress      => true,
+    delaycompress => true,
+  }
 }
+
 class appserv::user {
   group { 'admin':
     ensure => present,
