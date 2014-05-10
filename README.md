@@ -10,32 +10,36 @@ This repository contains puppet modules for lvlapp.com.
 - puppet 3, so we can use [hiera](http://docs.puppetlabs.com/hiera/1/).
 - ruby and librarian-puppet gem to install puppet modules.
 
-How to install puppet 3 on Ubuntu 12.04.
+Check the `./boostrap.sh` to see all the dependencies, and how to install them.
 
-```sh
-  wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
-  sudo dpkg -i puppetlabs-release-precise.deb
-  sudo apt-get update
-  sudo apt-get install puppet
-  puppet --version
-```
+### How to execute:
 
-Clone the repository on the server.
+Clone repository on the server.
 
-Prepare hierdata for your environment (check out the hierdata/vagrant.yaml as an example). Probably the best place to store it is in `/etc/puppet/hierdata/your_environment.yaml` dir.
+Prepare `hierdata` for your environment (check out the hierdata/vagrant.yaml as an example).
+(Probably the best place to store it is in `/etc/puppet/hierdata/datacenter.yaml` dir.)
 
 Run puppet:
 
 ```sh
-  gem install librarian-puppet
-  librarian-puppet install
-
   ./puppet_apply $your_environment
 ```
 
-### Adding new modules:
+### Testing with Vagrant (Vagrant in version at least 1.5)
 
-This repository uses librarian-puppet to manage vendor modules, so make sure that you have these gems installed:
+Default image used for this project is `ubuntu precise64`, that doesn't have puppet 3 installed.
+To get around it, please follow these instructions:
+
+```sh
+  vagrant up --no-provision
+  vagrant ssh
+  cd /vagrant
+  ./bootstrap.sh
+```
+
+### Additional information
+
+This repository uses librarian-puppet to manage modules:
 
 ```sh
   gem install librarian-puppet
@@ -44,21 +48,7 @@ This repository uses librarian-puppet to manage vendor modules, so make sure tha
   librarian-puppet install
 ```
 
-### Testing with Vagrant  Vagrant in version at least 1.5)
+### What does it really do:
 
-Default image used for this project is `ubuntu precise64`, that doesn't have puppet 3 installed.
-To get around it, please follow these instructions:
-
-```sh
-  vagrant up --no-provision
-  vagrant ssh
-  sudo su -
-  wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
-  dpkg -i puppetlabs-release-precise.deb
-  apt-get update
-  apt-get install puppet
-  exit
-  exit
-  vagrant provision
-```
-
+- creates user: `deployer` and sets application sepcific environment variables.
+- install and configure: ntp, firewall, git, locales, mysq, nginx, ruby 2.1, logrotate, vim.
